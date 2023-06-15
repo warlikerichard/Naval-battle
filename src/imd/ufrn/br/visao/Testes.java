@@ -7,6 +7,9 @@ public class Testes {
 		Tabuleiro tabuleiroPlayer = new Tabuleiro();
 		Tabuleiro tabuleiroCPU = new Tabuleiro();
 		
-		System.out.println(tabuleiroPlayer.getMapa()[0][0]);
+		tabuleiroPlayer.print();
+		System.out.println();
+		System.out.println();
+		tabuleiroCPU.print();
 	}
 }

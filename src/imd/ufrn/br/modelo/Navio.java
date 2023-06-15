@@ -7,11 +7,11 @@ public abstract class Navio {
 	private int vidas_restantes; // Iniciará valendo o tamanho da embarcação. Quando embarcação for atingida, a quantidade
 							     // de vidas restantes diminuirá em 1. Ao chegar em 0, o tabuleiro saberá que navio foi destruído.
 	
-	public Navio(int t, int s, int[] p) {
-		tamanho = t;
-		vidas_restantes = t;
-		sentido = s;
-		posicao = p;
+	public Navio(int tamanho, int sentido, int[] posicao) {
+		this.tamanho = tamanho;
+		this.vidas_restantes = tamanho;
+		this.sentido = sentido;
+		this.posicao = posicao;
 	}
 
 	public Navio(int t, int s) {
