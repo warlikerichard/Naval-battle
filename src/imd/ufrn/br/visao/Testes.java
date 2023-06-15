@@ -4,8 +4,9 @@ import imd.ufrn.br.modelo.Tabuleiro;
 
 public class Testes {
 	public static void main(String args[]) {
-		Tabuleiro tabuleiro = new Tabuleiro();
+		Tabuleiro tabuleiroPlayer = new Tabuleiro();
+		Tabuleiro tabuleiroCPU = new Tabuleiro();
 		
-		System.out.println(tabuleiro.getMapa()[0][0]);
+		System.out.println(tabuleiroPlayer.getMapa()[0][0]);
 	}
 }
