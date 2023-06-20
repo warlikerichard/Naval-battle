@@ -18,6 +18,7 @@ public class GameStarter {
 		tabuleiroPlayer.addNavio(new Destroyer());
 		
 		// Now we use the method rearranjarNavios from the class Tabuleiro.
+		
 	}
 	
 	public TabuleiroCPU getTabuleiroCPU() {
@@ -40,6 +41,10 @@ public class GameStarter {
 		GameStarter game = new GameStarter();
 		TabuleiroCPU tabuleiroCPU = game.getTabuleiroCPU();
 		TabuleiroPlayer tabuleiroPlayer = game.getTabuleiroPlayer();
+		
+		tabuleiroPlayer.moverNavio(2, 0, 0);
+		tabuleiroCPU.moverNavio(2, 9, 0);
+		tabuleiroPlayer.print();
 		
 		//Fazer função confirmShips em Tabuleiro para poder usar o print e verificar se está tudo certo
 		
