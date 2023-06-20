@@ -43,10 +43,19 @@ public class GameStarter {
 		TabuleiroPlayer tabuleiroPlayer = game.getTabuleiroPlayer();
 		
 		tabuleiroPlayer.moverNavio(2, 0, 0);
-		tabuleiroCPU.moverNavio(2, 9, 0);
+		//tabuleiroCPU.moverNavio(2, 9, 0);
 		tabuleiroPlayer.print();
 		
-		//Fazer função confirmShips em Tabuleiro para poder usar o print e verificar se está tudo certo
+		tabuleiroPlayer.moverNavio(2, 1, 0);
+		tabuleiroPlayer.print();
+		tabuleiroPlayer.moverNavio(2, 2, 1);
+		tabuleiroPlayer.print();
+		tabuleiroPlayer.moverNavio(2, 3, 2);
+		tabuleiroPlayer.print();
+		tabuleiroPlayer.moverNavio(2, 3, 3);
+		tabuleiroPlayer.print();
+		
+		//Ao mover um navio, o mesmo é confirmado como ativo, sendo assim possível visualisá-lo no tabuleiro (player)
 		
 	}
 }
