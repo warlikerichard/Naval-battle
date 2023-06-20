@@ -38,7 +38,7 @@ public class GameStarter {
 
 	public static void main(String ards[]) {
 		GameStarter game = new GameStarter();
-		TabuleiroCPU tabuleiroCPU = game.getTabuleiroCPU()
+		TabuleiroCPU tabuleiroCPU = game.getTabuleiroCPU();
 		TabuleiroPlayer tabuleiroPlayer = game.getTabuleiroPlayer();
 		
 		//Fazer função confirmShips em Tabuleiro para poder usar o print e verificar se está tudo certo
