@@ -7,15 +7,15 @@ public class GameStarter {
 	private TabuleiroPlayer tabuleiroPlayer = new TabuleiroPlayer();
 	
 	public GameStarter() {
-		tabuleiroCPU.addNavio(new Corveta(0, new int[]{0, 0}));
-		tabuleiroCPU.addNavio(new Fragata(0, new int[]{0, 1}));
-		tabuleiroCPU.addNavio(new Submarino(0, new int[]{0, 2}));
-		tabuleiroCPU.addNavio(new Destroyer(0, new int[]{0, 3}));
+		tabuleiroCPU.addNavio(new Corveta());
+		tabuleiroCPU.addNavio(new Fragata());
+		tabuleiroCPU.addNavio(new Submarino());
+		tabuleiroCPU.addNavio(new Destroyer());
 		
-		tabuleiroPlayer.addNavio(new Corveta(0, new int[]{0, 0}));
-		tabuleiroPlayer.addNavio(new Fragata(0, new int[]{0, 1}));
-		tabuleiroPlayer.addNavio(new Submarino(0, new int[]{0, 2}));
-		tabuleiroPlayer.addNavio(new Destroyer(0, new int[]{0, 3}));
+		tabuleiroPlayer.addNavio(new Corveta());
+		tabuleiroPlayer.addNavio(new Fragata());
+		tabuleiroPlayer.addNavio(new Submarino());
+		tabuleiroPlayer.addNavio(new Destroyer());
 		
 		// Now we use the method rearranjarNavios from the class Tabuleiro.
 	}

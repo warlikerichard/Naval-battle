@@ -5,4 +5,8 @@ public class Submarino extends Navio {
 	public Submarino(int sentido, int[] posicao) {
 		super(3, sentido, posicao);
 	}
+	
+	public Submarino() {
+		super(3, 0);
+	}
 }
