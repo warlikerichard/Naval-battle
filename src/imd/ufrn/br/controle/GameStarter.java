@@ -3,10 +3,13 @@ import imd.ufrn.br.modelo.*;
 
 
 public class GameStarter {
-	private TabuleiroCPU tabuleiroCPU = new TabuleiroCPU();
-	private TabuleiroPlayer tabuleiroPlayer = new TabuleiroPlayer();
+	private TabuleiroCPU tabuleiroCPU;
+	private TabuleiroPlayer tabuleiroPlayer;
 	
 	public GameStarter() {
+		tabuleiroPlayer = new TabuleiroPlayer();
+		tabuleiroCPU = new TabuleiroCPU();
+		
 		tabuleiroCPU.addNavio(new Corveta());
 		tabuleiroCPU.addNavio(new Fragata());
 		tabuleiroCPU.addNavio(new Submarino());
@@ -34,14 +37,5 @@ public class GameStarter {
 
 	public void setTabuleiroPlayer(TabuleiroPlayer tabuleiroPlayer) {
 		this.tabuleiroPlayer = tabuleiroPlayer;
-	}
-
-	public static void main(String ards[]) {
-		GameStarter game = new GameStarter();
-		TabuleiroCPU tabuleiroCPU = game.getTabuleiroCPU();
-		TabuleiroPlayer tabuleiroPlayer = game.getTabuleiroPlayer();
-		
-		//Fazer função confirmShips em Tabuleiro para poder usar o print e verificar se está tudo certo
-		
 	}
 }
