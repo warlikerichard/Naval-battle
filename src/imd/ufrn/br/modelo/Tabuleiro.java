@@ -93,6 +93,10 @@ public abstract class Tabuleiro {
 		}
 	}
 	
+	public void setBlocoEstado(int x, int y, int estado) {
+		this.mapa[x][y].setEstado(estado);
+	}
+	
 	//Updates the blocks according to the current ships stored, so the states of the blocks won't just be 0
 	public void confirmShips() {
 		for(int i : navios.keySet()){

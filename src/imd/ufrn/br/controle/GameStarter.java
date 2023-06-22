@@ -1,23 +1,16 @@
 package imd.ufrn.br.controle;
-import imd.ufrn.br.modelo.*;
 
+import imd.ufrn.br.modelo.*;
 
 public class GameStarter {
 	private TabuleiroCPU tabuleiroCPU = new TabuleiroCPU();
 	private TabuleiroPlayer tabuleiroPlayer = new TabuleiroPlayer();
 	
 	public GameStarter() {
-		tabuleiroCPU.addNavio(new Corveta());
-		tabuleiroCPU.addNavio(new Fragata());
-		tabuleiroCPU.addNavio(new Submarino());
-		tabuleiroCPU.addNavio(new Destroyer());
 		
-		tabuleiroPlayer.addNavio(new Corveta());
-		tabuleiroPlayer.addNavio(new Fragata());
-		tabuleiroPlayer.addNavio(new Submarino());
-		tabuleiroPlayer.addNavio(new Destroyer());
-		
-		// Now we use the method rearranjarNavios from the class Tabuleiro.
+	}
+	
+	public void randomizeBoard() {
 		
 	}
 	
@@ -54,8 +47,5 @@ public class GameStarter {
 		tabuleiroPlayer.print();
 		tabuleiroPlayer.moverNavio(2, 3, 3);
 		tabuleiroPlayer.print();
-		
-		//Ao mover um navio, o mesmo é confirmado como ativo, sendo assim possível visualisá-lo no tabuleiro (player)
-		
 	}
 }
