@@ -7,6 +7,6 @@ public class Fragata extends Navio {
 	}
 	
 	public Fragata() {
-		super(5, 0);
+		super(4, 0);
 	}
 }

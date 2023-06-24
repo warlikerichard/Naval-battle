@@ -15,6 +15,11 @@ public abstract class Tabuleiro {
 				this.mapa[x][y] = new Bloco();
 			}
 		}
+		
+		addNavio(randomizePosition(new Destroyer()));
+		addNavio(randomizePosition(new Fragata()));
+		addNavio(randomizePosition(new Submarino()));
+		addNavio(randomizePosition(new Corveta()));
 	}
 	
 	public abstract void print();
@@ -115,5 +120,60 @@ public abstract class Tabuleiro {
 				} 
 			}
 		}
+	}
+	
+	public Navio randomizePosition(Navio ship) {
+		boolean canBePlaced = true;
+		int val1 = getRandomNumber(0, 9);
+		int val2 = getRandomNumber(0, 10-ship.getTamanho());
+		ship.setSentido(getRandomNumber(0, 2));
+		int[] shipPos = new int[2];
+		
+		if (ship.getSentido() == 0) {
+			shipPos[0] = val1;
+			shipPos[1] = val2;
+			ship.setPosicao(shipPos);
+		} else {
+			shipPos[0] = val2;
+			shipPos[1] = val1;
+			ship.setPosicao(shipPos);
+		}
+		
+		for (int x = 0; x < ship.getTamanho(); x++) {
+			val1 = ship.getPosicao()[0];
+			val2 = ship.getPosicao()[1];
+			if (ship.getSentido() == 0) {
+				val1+=x;
+			} else {
+				val2+=x;
+			}
+			
+			if (this.mapa[val1][val2].getEstado() != 0) {
+				canBePlaced = false;
+				break;
+			}
+		}
+		
+		if (canBePlaced) {
+			for(int x = 0; x < ship.getTamanho(); x++) {
+				if (ship.getSentido() == 0) {
+					this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setEstado(3);
+				} else {
+					this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setEstado(3);
+				}
+			}
+			
+			//print();
+			//System.out.println();
+			//System.out.println();
+			
+			return ship;
+		} else {
+			return randomizePosition(ship);
+		}
+	}
+	
+	public int getRandomNumber(int min, int max) {
+	    return (int) ((Math.random() * (max - min)) + min);
 	}
 }
