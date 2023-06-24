@@ -143,12 +143,12 @@ public abstract class Tabuleiro {
 			val1 = ship.getPosicao()[0];
 			val2 = ship.getPosicao()[1];
 			if (ship.getSentido() == 0) {
-				val1+=x;
-			} else {
 				val2+=x;
+			} else {
+				val1+=x;
 			}
 			
-			if (this.mapa[val1][val2].getEstado() != 0) {
+			if (this.mapa[val1][val2].getChave() != 0) {
 				canBePlaced = false;
 				break;
 			}
@@ -157,9 +157,13 @@ public abstract class Tabuleiro {
 		if (canBePlaced) {
 			for(int x = 0; x < ship.getTamanho(); x++) {
 				if (ship.getSentido() == 0) {
-					this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setEstado(3);
+					this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setChave(ship.getTamanho());
+					//this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setEstado(2);
+					//this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setEstado(3);
 				} else {
-					this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setEstado(3);
+					this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setChave(ship.getTamanho());
+					//this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setEstado(2);
+					//this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setEstado(3);
 				}
 			}
 			
