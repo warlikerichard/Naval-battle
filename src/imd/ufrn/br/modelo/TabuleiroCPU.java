@@ -13,5 +13,6 @@ public class TabuleiroCPU extends Tabuleiro {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 }
