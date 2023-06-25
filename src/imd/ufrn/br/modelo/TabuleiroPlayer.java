@@ -14,5 +14,6 @@ public class TabuleiroPlayer extends Tabuleiro {
 			System.out.println();
 		}
 		System.out.println();
+		
 	}
 }
