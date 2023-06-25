@@ -6,13 +6,9 @@ public class GameStarter {
 	private TabuleiroCPU tabuleiroCPU;
 	private TabuleiroPlayer tabuleiroPlayer;
 	
-	private enum GameState{
-		MENU,
-		SHIP_SELECTION,
-		WIN,
-		GAME_OVER,
-		EXIT_GAME
-	}
+	
+	
+	private GameState state = GameState.MENU;
 	
 	public GameState getState() {
 		return state;
@@ -21,8 +17,6 @@ public class GameStarter {
 	public void setState(GameState state) {
 		this.state = state;
 	}
-
-	private GameState state = GameState.MENU;
 	
 	public GameStarter() {
 		tabuleiroCPU = new TabuleiroCPU();
