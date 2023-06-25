@@ -8,29 +8,29 @@
 
 package imd.ufrn.br.visao;
 
-import imd.ufrn.br.controle.GameStarter;
-import imd.ufrn.br.modelo.TabuleiroCPU;
-import imd.ufrn.br.modelo.TabuleiroPlayer;
+import imd.ufrn.br.controle.GameController;
 import imd.ufrn.br.controle.GameState;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class BatalhaNaval {
 	
 	public static void main(String ards[]) {
 		Scanner scan = new Scanner(System.in);
-		GameStarter game = new GameStarter();
-		TabuleiroCPU tabuleiroCPU = game.getTabuleiroCPU();
-		TabuleiroPlayer tabuleiroPlayer = game.getTabuleiroPlayer();
+		GameController game = new GameController();
 		
 		String lastCommand;
 		
 		while(game.getState() != GameState.EXIT_GAME) {
 			switch(game.getState()) {
 			case MENU:
-				game.printMenu();
+				printMenu(game);
 				lastCommand = scan.nextLine();
 				if(lastCommand.equals("2")) {
-					game.printControles();
+					printControles();
+					printMenu(game);
 				}
 				break;
 			case SHIP_SELECTION:
@@ -50,5 +50,33 @@ public class BatalhaNaval {
 				break;
 			}
 		}
+	}
+	
+	public static void printMenu(GameController game) {
+		System.out.println("================== BATALHA NAVAL =================\n");
+		game.getTabuleiroPlayer().print();
+		System.out.println("1- Iniciar\t2- Controles\t3- Sair");
+		System.out.println();
+	}
+	
+	public static void printControles() {
+		File controls = new File("src/imd/ufrn/br/controle/controls.txt");
+		
+		try {
+            Scanner scanner = new Scanner(controls);
+            Scanner read = new Scanner(System.in);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.println(line);
+            }
+            
+            System.out.println("Pressione enter para voltar.");
+            read.nextLine();
+            read.close();
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 	}
 }

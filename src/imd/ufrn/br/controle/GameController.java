@@ -9,6 +9,16 @@ public class GameController {
 	private TabuleiroCPU tabuleiroCPU;
 	private TabuleiroPlayer tabuleiroPlayer;
 	
+	private GameState state = GameState.MENU;
+	
+	public GameState getState() {
+		return state;
+	}
+
+	public void setState(GameState state) {
+		this.state = state;
+	}
+	
 	public GameController() {
 		tabuleiroCPU = new TabuleiroCPU();
 		tabuleiroPlayer = new TabuleiroPlayer();
