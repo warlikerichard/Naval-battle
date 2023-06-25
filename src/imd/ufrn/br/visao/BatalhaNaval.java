@@ -10,6 +10,7 @@ package imd.ufrn.br.visao;
 
 import imd.ufrn.br.controle.GameController;
 import imd.ufrn.br.controle.GameState;
+import imd.ufrn.br.modelo.TabuleiroPlayer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,17 +21,18 @@ public class BatalhaNaval {
 	public static void main(String ards[]) {
 		Scanner scan = new Scanner(System.in);
 		GameController game = new GameController();
+		TabuleiroPlayer tabuleiroPlayer = new TabuleiroPlayer();
 		
 		String lastCommand;
 		
 		while(game.getState() != GameState.EXIT_GAME) {
 			switch(game.getState()) {
 			case MENU:
-				printMenu(game);
+				printMenu(tabuleiroPlayer);
 				lastCommand = scan.nextLine();
 				if(lastCommand.equals("2")) {
 					printControles();
-					printMenu(game);
+					printMenu(tabuleiroPlayer);
 				}
 				break;
 			case SHIP_SELECTION:
@@ -52,9 +54,9 @@ public class BatalhaNaval {
 		}
 	}
 	
-	public static void printMenu(GameController game) {
+	public static void printMenu(TabuleiroPlayer tabuleiro) {
 		System.out.println("================== BATALHA NAVAL =================\n");
-		game.getTabuleiroPlayer().print();
+		tabuleiro.print();
 		System.out.println("1- Iniciar\t2- Controles\t3- Sair");
 		System.out.println();
 	}
