@@ -6,6 +6,12 @@ public class GameStarter {
 	private TabuleiroCPU tabuleiroCPU;
 	private TabuleiroPlayer tabuleiroPlayer;
 	
+	private int gameState = 0;  // 0: Menu
+	   							// 1: Seleção de navios
+    							// 2: Jogo iniciado
+    							// 4: Jogo vencido
+    							// 5: Game over
+	
 	public GameStarter() {
 		tabuleiroCPU = new TabuleiroCPU();
 		tabuleiroPlayer = new TabuleiroPlayer();
@@ -31,28 +37,4 @@ public class GameStarter {
 		this.tabuleiroPlayer = tabuleiroPlayer;
 	}
 
-	public static void main(String ards[]) {
-		GameStarter game = new GameStarter();
-		TabuleiroCPU tabuleiroCPU = game.getTabuleiroCPU();
-		TabuleiroPlayer tabuleiroPlayer = game.getTabuleiroPlayer();
-		
-		tabuleiroPlayer.print();
-		System.out.println();
-		System.out.println();
-		tabuleiroCPU.print();
-		
-		
-//		tabuleiroPlayer.moverNavio(2, 0, 0);
-//		//tabuleiroCPU.moverNavio(2, 9, 0);
-//		tabuleiroPlayer.print();
-		
-//		tabuleiroPlayer.moverNavio(2, 1, 0);
-//		tabuleiroPlayer.print();
-//		tabuleiroPlayer.moverNavio(2, 2, 1);
-//		tabuleiroPlayer.print();
-//		tabuleiroPlayer.moverNavio(2, 3, 2);
-//		tabuleiroPlayer.print();
-//		tabuleiroPlayer.moverNavio(2, 3, 3);
-//		tabuleiroPlayer.print();
-	}
 }
