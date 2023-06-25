@@ -25,7 +25,7 @@ public abstract class Tabuleiro {
 	public abstract void print();
 	
 	public HashMap<Integer, Navio> getNavios() {
-		return navios;
+		return this.navios;
 	}
 	
 	public void setNavios(HashMap<Integer, Navio> navios) {
@@ -33,15 +33,19 @@ public abstract class Tabuleiro {
 	}
 	
 	public void addNavio(Navio navio) {
-		navios.put(navio.getTamanho(), navio);
+		this.navios.put(navio.getTamanho(), navio);
 	}
 	
 	public Bloco[][] getMapa() {
-		return mapa;
+		return this.mapa;
 	}
 	
 	public void setMapa(Bloco[][] mapa) {
 		this.mapa = mapa;
+	}
+	
+	public void setBlocoEstado(int x, int y, int estado) {
+		this.mapa[x][y].setEstado(estado);
 	}
 	
 	//Metodos de controle
@@ -55,11 +59,47 @@ public abstract class Tabuleiro {
 		}
 	}
 	
+	//Verifica e aplica um tiro em um Bloco
+	public String shot(int[] aim) {
+		try {
+			if (this.mapa[aim[0]][aim[1]].getEstado() == 0) {
+				this.mapa[aim[0]][aim[1]].setEstado(1);
+				return "Água/Miss";
+				
+			} else if (this.mapa[aim[0]][aim[1]].getEstado() == 2) {
+				this.navios.get(this.mapa[aim[0]][aim[1]].getChave()).wasShot();
+				if (this.navios.get(this.mapa[aim[0]][aim[1]].getChave()).getVida_restante() == 0) {
+					Navio navio = this.navios.get(this.mapa[aim[0]][aim[1]].getChave());
+					if (navio.getSentido() == 0) {
+						for (int x = navio.getPosicao()[0];x < navio.getPosicao()[1] + navio.getTamanho() -1;x++) {
+							this.mapa[navio.getPosicao()[1]][x].setEstado(4);
+						}
+					} else {
+						for (int x = navio.getPosicao()[1];x < navio.getPosicao()[0] + navio.getTamanho() -1;x++) {
+							this.mapa[x][navio.getPosicao()[0]].setEstado(4);
+						}
+					}
+					
+					return "Navio afundado";
+					
+				} else {
+					this.mapa[aim[0]][aim[1]].setEstado(3);
+					return "Acerto/Hit";
+					
+				}
+			} else {
+				return "Bloco já atingido";
+				
+			}
+		} catch (Exception e) {
+			return "Error: try again";
+		}
+	}
+	
 	//Move um navio para a posição dada.
 	public void moverNavio(Integer id, int x, int y) {
 		Navio navio = navios.get(id);
 		boolean success = true;
-		
 		
 		for(int i=0; i<navio.getTamanho(); i++) {
 			if(navio.getSentido() == 1 && navio.getTamanho() + x - 1 < 10) {
@@ -98,10 +138,6 @@ public abstract class Tabuleiro {
 		}
 	}
 	
-	public void setBlocoEstado(int x, int y, int estado) {
-		this.mapa[x][y].setEstado(estado);
-	}
-	
 	//Updates the blocks according to the current ships stored, so the states of the blocks won't just be 0
 	public void confirmShips() {
 		for(int i : navios.keySet()){
@@ -122,6 +158,7 @@ public abstract class Tabuleiro {
 		}
 	}
 	
+	//Starts the ships in random positions
 	public Navio randomizePosition(Navio ship) {
 		boolean canBePlaced = true;
 		int val1 = getRandomNumber(0, 9);

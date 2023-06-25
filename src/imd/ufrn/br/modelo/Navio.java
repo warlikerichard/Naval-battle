@@ -28,6 +28,10 @@ public abstract class Navio {
 		this.vidas_restantes = vida_restante;
 	}
 	
+	public void wasShot() {
+		this.vidas_restantes-=1;
+	}
+	
 	public int getTamanho() {
 		return tamanho;
 	}
