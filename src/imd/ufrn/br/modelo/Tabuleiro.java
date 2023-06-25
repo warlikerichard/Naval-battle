@@ -158,11 +158,11 @@ public abstract class Tabuleiro {
 			for(int x = 0; x < ship.getTamanho(); x++) {
 				if (ship.getSentido() == 0) {
 					this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setChave(ship.getTamanho());
-					//this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setEstado(2);
+					this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setEstado(2);
 					//this.mapa[ship.getPosicao()[0]][ship.getPosicao()[1] + x].setEstado(3);
 				} else {
 					this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setChave(ship.getTamanho());
-					//this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setEstado(2);
+					this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setEstado(2);
 					//this.mapa[ship.getPosicao()[0] + x][ship.getPosicao()[1]].setEstado(3);
 				}
 			}
