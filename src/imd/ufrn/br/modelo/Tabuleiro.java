@@ -101,7 +101,7 @@ public abstract class Tabuleiro {
 		Navio navio = navios.get(id);
 		boolean success = true;
 		
-		for(int i=0; i<navio.getTamanho(); i++) {
+		for(int i=0; i < navio.getTamanho(); i++) {
 			if(navio.getSentido() == 1 && navio.getTamanho() + x - 1 < 10) {
 				if(mapa[x+i][y].getChave() == 0 || mapa[x+i][y].getChave() == navio.getTamanho()) {
 					mapa[x+i][y].setChave(navio.getTamanho());

@@ -1,5 +1,8 @@
 package imd.ufrn.br.controle;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import imd.ufrn.br.modelo.*;
 
 public class GameStarter {
@@ -9,10 +12,6 @@ public class GameStarter {
 	public GameStarter() {
 		tabuleiroCPU = new TabuleiroCPU();
 		tabuleiroPlayer = new TabuleiroPlayer();
-	}
-	
-	public void randomizeBoard() {
-		
 	}
 	
 	public TabuleiroCPU getTabuleiroCPU() {
@@ -29,6 +28,21 @@ public class GameStarter {
 
 	public void setTabuleiroPlayer(TabuleiroPlayer tabuleiroPlayer) {
 		this.tabuleiroPlayer = tabuleiroPlayer;
+	}
+	
+	//Verifica se um tabuleiro ainda possui algum navio com vida restante
+	public boolean verificarVidas(Tabuleiro tabuleiro) {
+		boolean lost = true;
+		HashMap<Integer, Navio> navios = tabuleiro.getNavios();
+		
+		for(Map.Entry<Integer, Navio> navio : navios.entrySet()) {
+			if (navio.getValue().getVida_restante() > 0) {
+				lost = false;
+				break;
+			}
+		}
+		
+		return lost;
 	}
 
 	public static void main(String ards[]) {
