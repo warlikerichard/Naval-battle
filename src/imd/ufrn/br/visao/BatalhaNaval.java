@@ -29,16 +29,25 @@ public class BatalhaNaval {
 			case MENU:
 				game.printMenu();
 				lastCommand = scan.nextLine();
+				if(lastCommand.equals("2")) {
+					game.printControles();
+				}
+				break;
 			case SHIP_SELECTION:
 				
+				break;
 			case PLAYING:
 				
+				break;
 			case WIN:
 				
+				break;
 			case GAME_OVER:
 				
+				break;
 			case EXIT_GAME:
-				scan.close();
+				
+				break;
 			}
 		}
 	}
