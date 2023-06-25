@@ -6,11 +6,23 @@ public class GameStarter {
 	private TabuleiroCPU tabuleiroCPU;
 	private TabuleiroPlayer tabuleiroPlayer;
 	
-	private int gameState = 0;  // 0: Menu
-	   							// 1: Seleção de navios
-    							// 2: Jogo iniciado
-    							// 4: Jogo vencido
-    							// 5: Game over
+	private enum GameState{
+		MENU,
+		SHIP_SELECTION,
+		WIN,
+		GAME_OVER,
+		EXIT_GAME
+	}
+	
+	public GameState getState() {
+		return state;
+	}
+
+	public void setState(GameState state) {
+		this.state = state;
+	}
+
+	private GameState state = GameState.MENU;
 	
 	public GameStarter() {
 		tabuleiroCPU = new TabuleiroCPU();
