@@ -9,7 +9,10 @@ public class TabuleiroPlayer extends Tabuleiro {
 	public void print() {
 		for (int y = 0; y < 10 ; y++) {
 			for (int x = 0; x < 10 ; x++) {
-				System.out.print(getMapa()[x][y].getEstado());
+				String state = String.valueOf(String.valueOf(getMapa()[x][y].getEstado()));
+				
+				
+				System.out.print(state.equals("1") ? "X " : state.equals("2") ? "+ " : state.equals("3") ? "* " : state.equals("4") ? "- " : "0 ");
 			}
 			System.out.println();
 		}

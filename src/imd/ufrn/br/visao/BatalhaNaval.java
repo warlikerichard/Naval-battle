@@ -32,7 +32,16 @@ public class BatalhaNaval {
 				lastCommand = scan.nextLine();
 				if(lastCommand.equals("2")) {
 					printControles();
-					printMenu(tabuleiroPlayer);
+					//printMenu(tabuleiroPlayer);
+				}
+				else if(lastCommand.equals("1")) {
+					game.setState(GameState.SHIP_SELECTION);
+				}
+				else if(lastCommand.equals("3")) {
+					game.setState(GameState.EXIT_GAME);
+				}
+				else {
+					System.out.println("Comando inválido!");
 				}
 				break;
 			case SHIP_SELECTION:
@@ -52,14 +61,33 @@ public class BatalhaNaval {
 				break;
 			}
 		}
+		
+		System.out.println("Obrigado por jogar!");
+		scan.close();
 	}
 	
 	public static void printMenu(TabuleiroPlayer tabuleiro) {
-		System.out.println("================== BATALHA NAVAL =================\n");
-		tabuleiro.print();
+		System.out.println("================================ BATALHA NAVAL ===============================\n");
+		//tabuleiro.print();
+		File ship = new File("src/imd/ufrn/br/visao/ship.txt");
+		
+		try {
+            Scanner scanner = new Scanner(ship);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.println(line);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		System.out.println();
 		System.out.println("1- Iniciar\t2- Controles\t3- Sair");
 		System.out.println();
 	}
+	
 	
 	public static void printControles() {
 		File controls = new File("src/imd/ufrn/br/controle/controls.txt");
@@ -75,7 +103,6 @@ public class BatalhaNaval {
             
             System.out.println("Pressione enter para voltar.");
             read.nextLine();
-            read.close();
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
