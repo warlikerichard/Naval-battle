@@ -83,7 +83,14 @@ public class BatalhaNaval {
 				printGame(game.getTabuleiroPlayer(), game.getTabuleiroCPU());
 				lastCommand = scan.nextLine();
 				String[] attack = lastCommand.split(" ");
-				game.turn(new int[] {Integer.valueOf(attack[0]), Integer.valueOf(attack[1])});
+				int result = game.turn(new int[] {Integer.valueOf(attack[0]), Integer.valueOf(attack[1])});
+				
+				if(result == 1) {
+					game.setState(GameState.WIN);
+				}
+				else if(result == 2) {
+					game.setState(GameState.GAME_OVER);
+				}
 				break;
 				
 			case WIN:
