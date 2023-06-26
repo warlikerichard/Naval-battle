@@ -44,6 +44,7 @@ public class BatalhaNaval {
 					System.out.println("Comando inválido!");
 				}
 				break;
+				
 			case SHIP_SELECTION:
 				printShipSelection(tabuleiroPlayer);
 				lastCommand = scan.nextLine();
@@ -53,6 +54,21 @@ public class BatalhaNaval {
 				}
 				else if(lastCommand.equals("r")){
 					game.setState(GameState.MENU);
+				}
+				else if(lastCommand.endsWith("v") || lastCommand.endsWith("h")) {
+					try {
+						int dir;
+						if(lastCommand.charAt(6) == 'v') dir = 0;
+						else dir = 1;
+						String[] commands = lastCommand.split(" ");
+						tabuleiroPlayer.moverNavio(Integer.valueOf(commands[0]), Integer.valueOf(commands[1]), Integer.valueOf(commands[2]), dir);
+					}
+					catch(Error err){
+						System.out.println(err);
+					}
+				}
+				else {
+					System.out.println("Comando inválido!");
 				}
 				break;
 			case PLAYING:
