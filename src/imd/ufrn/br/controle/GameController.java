@@ -9,6 +9,16 @@ public class GameController {
 	private TabuleiroCPU tabuleiroCPU;
 	private TabuleiroPlayer tabuleiroPlayer;
 	
+	private GameState state = GameState.MENU;
+	
+	public GameState getState() {
+		return state;
+	}
+
+	public void setState(GameState state) {
+		this.state = state;
+	}
+	
 	public GameController() {
 		tabuleiroCPU = new TabuleiroCPU();
 		tabuleiroPlayer = new TabuleiroPlayer();
@@ -53,8 +63,10 @@ public class GameController {
 		System.out.println("Computador atirou em : " + aimCPU[0] + ", " + aimCPU[1]);
 		System.out.println();
 		
-		drawBoards();
+
 		return 0;
+		//drawBoards();
+
 	}
 	
 	//Verifica se um tabuleiro ainda possui algum navio com vida restante
@@ -68,33 +80,6 @@ public class GameController {
 		
 		return true;
 	}
-	
-	/*
-	public static void main(String ards[]) {
-		GameStarter game = new GameStarter();
-		TabuleiroCPU tabuleiroCPU = game.getTabuleiroCPU();
-		TabuleiroPlayer tabuleiroPlayer = game.getTabuleiroPlayer();
-		
-		tabuleiroPlayer.print();
-		System.out.println();
-		System.out.println();
-		tabuleiroCPU.print();
-		
-		
-//		tabuleiroPlayer.moverNavio(2, 0, 0);
-//		//tabuleiroCPU.moverNavio(2, 9, 0);
-//		tabuleiroPlayer.print();
-		
-//		tabuleiroPlayer.moverNavio(2, 1, 0);
-//		tabuleiroPlayer.print();
-//		tabuleiroPlayer.moverNavio(2, 2, 1);
-//		tabuleiroPlayer.print();
-//		tabuleiroPlayer.moverNavio(2, 3, 2);
-//		tabuleiroPlayer.print();
-//		tabuleiroPlayer.moverNavio(2, 3, 3);
-//		tabuleiroPlayer.print();
-	}
-	*/
 	
 	/*public static void main(String ards[]) {
 		GameStarter game = new GameStarter();

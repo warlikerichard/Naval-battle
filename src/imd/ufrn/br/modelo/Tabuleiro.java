@@ -138,6 +138,47 @@ public abstract class Tabuleiro {
 		}
 	}
 	
+	public void moverNavio(Integer id, int x, int y, int dir) {
+		Navio navio = navios.get(id);
+		boolean success = true;
+		
+		for(int i=0; i < navio.getTamanho(); i++) {
+			if(dir == 1 && navio.getTamanho() + x - 1 < 10) {
+				if(mapa[x+i][y].getChave() == 0 || mapa[x+i][y].getChave() == navio.getTamanho()) {
+					mapa[x+i][y].setChave(navio.getTamanho());
+					mapa[x+i][y].setEstado(2);
+				}
+				else {
+					System.out.println("Lugar ocupado!");
+					success = false;
+					break;
+				}
+			}
+			else if(dir == 0 && navio.getTamanho() + y - 1 < 10){
+				if(mapa[x][y+i].getChave() == 0  || mapa[x][y+i].getChave() == navio.getTamanho()) {
+					mapa[x][y+i].setChave(navio.getTamanho());
+					mapa[x][y+i].setEstado(2);
+				}
+				else {
+					System.out.println("Lugar ocupado!");
+					success = false;
+					break;
+				}
+			}
+			else{
+				System.out.println("Fora dos limites");
+				success = false;
+				break;
+			}
+		}
+		if(success){
+			navio.setSentido(dir);
+			navio.setPosicao(new int[]{x, y});
+			navio.setActive();
+			limparTabuleiro();
+			confirmShips();
+		}
+	}
 	//Updates the blocks according to the current ships stored, so the states of the blocks won't just be 0
 	public void confirmShips() {
 		for(int i : navios.keySet()){
