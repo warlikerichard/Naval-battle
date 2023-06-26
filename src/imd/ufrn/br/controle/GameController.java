@@ -60,7 +60,7 @@ public class GameController {
 		System.out.println("Computador atirou em : " + aimCPU[0] + ", " + aimCPU[1]);
 		System.out.println();
 		
-		drawBoards();
+		//drawBoards();
 	}
 	
 	//Verifica se um tabuleiro ainda possui algum navio com vida restante

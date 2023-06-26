@@ -10,6 +10,7 @@ package imd.ufrn.br.visao;
 
 import imd.ufrn.br.controle.GameController;
 import imd.ufrn.br.controle.GameState;
+import imd.ufrn.br.modelo.TabuleiroCPU;
 import imd.ufrn.br.modelo.TabuleiroPlayer;
 
 import java.io.File;
@@ -22,11 +23,13 @@ public class BatalhaNaval {
 		Scanner scan = new Scanner(System.in);
 		GameController game = new GameController();
 		TabuleiroPlayer tabuleiroPlayer = new TabuleiroPlayer();
+		TabuleiroCPU tabuleiroCPU = new TabuleiroCPU();
 		
 		String lastCommand;
 		
 		while(game.getState() != GameState.EXIT_GAME) {
 			switch(game.getState()) {
+			
 			case MENU:
 				printMenu(tabuleiroPlayer);
 				lastCommand = scan.nextLine();
@@ -67,13 +70,22 @@ public class BatalhaNaval {
 						System.out.println(err);
 					}
 				}
+				else if(lastCommand.isEmpty()) {
+					game.setState(GameState.PLAYING);
+				}
 				else {
 					System.out.println("Comando inválido!");
 				}
 				break;
+				
 			case PLAYING:
 				
+				printGame(game.getTabuleiroPlayer(), game.getTabuleiroCPU());
+				lastCommand = scan.nextLine();
+				String[] attack = lastCommand.split(" ");
+				game.turn(new int[] {Integer.valueOf(attack[0]), Integer.valueOf(attack[1])});
 				break;
+				
 			case WIN:
 				File ship = new File("src/imd/ufrn/br/visao/victory.txt");
 				
@@ -93,11 +105,13 @@ public class BatalhaNaval {
 				game.setState(GameState.MENU);
 				
 				break;
+				
 			case GAME_OVER:
 				System.out.println("Pressione Enter para voltar ao menu.");
 				scan.nextLine();
 				game.setState(GameState.MENU);
 				break;
+				
 			case EXIT_GAME:
 				
 				break;
@@ -108,6 +122,7 @@ public class BatalhaNaval {
 		scan.close();
 	}
 	
+	// Prints the menu with command options.
 	public static void printMenu(TabuleiroPlayer tabuleiro) {
 		System.out.println("================================ BATALHA NAVAL ===============================\n");
 		//tabuleiro.print();
@@ -130,7 +145,7 @@ public class BatalhaNaval {
 		System.out.println();
 	}
 	
-	
+	// Shows a help screen with the commands to play the game
 	public static void printControles() {
 		File controls = new File("src/imd/ufrn/br/controle/controls.txt");
 		
@@ -151,11 +166,21 @@ public class BatalhaNaval {
         }
 	}
 	
+	// Prints the screen when selecting a ship
 	public static void printShipSelection(TabuleiroPlayer tabuleiro) {
 		System.out.println("================================ SELEÇÃO DE NAVIO ===============================\n");
 		tabuleiro.print();
 		System.out.println("Selecione um navio pelo tamanho, escolha sua posição e orientação.\nDigite -h para uma explicação\n");
 		System.out.println("Pressione r para retornar ao menu.\n");
 		System.out.println("Pressione Enter para jogar");
+	}
+	
+	// Shows the boards of player and CPU during gameplay.
+	public static void printGame(TabuleiroPlayer tabuleiroP, TabuleiroCPU tabuleiroC) {
+		System.out.println("SEU TABULEIRO:");
+		tabuleiroP.print();
+		
+		System.out.println("TABULEIRO INIMIGO:");
+		tabuleiroC.print();
 	}
 }
