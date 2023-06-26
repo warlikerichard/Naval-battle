@@ -45,7 +45,15 @@ public class BatalhaNaval {
 				}
 				break;
 			case SHIP_SELECTION:
+				printShipSelection(tabuleiroPlayer);
+				lastCommand = scan.nextLine();
 				
+				if(lastCommand.equals("-h")) {
+					printControles();
+				}
+				else if(lastCommand.equals("r")){
+					game.setState(GameState.MENU);
+				}
 				break;
 			case PLAYING:
 				
@@ -125,5 +133,13 @@ public class BatalhaNaval {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+	}
+	
+	public static void printShipSelection(TabuleiroPlayer tabuleiro) {
+		System.out.println("================================ SELEÇÃO DE NAVIO ===============================\n");
+		tabuleiro.print();
+		System.out.println("Selecione um navio pelo tamanho, escolha sua posição e orientação.\nDigite -h para uma explicação\n");
+		System.out.println("Pressione r para retornar ao menu.\n");
+		System.out.println("Pressione Enter para jogar");
 	}
 }
