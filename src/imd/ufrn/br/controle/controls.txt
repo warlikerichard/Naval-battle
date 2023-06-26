@@ -1,0 +1,13 @@
+========================== Controles ==========================
+
+Para mover um navio no menu, digite:
+	[tamanho_do_navio] [pos_x] [pos_y] [v/h]
+	Exemplo: 2 0 7 v
+	No exemplo acima, movemos o navio de tamanho 2 para
+	a posição (0, 7) e o posicionamos na vertical.
+
+Para atirar no campo inimigo, durante o jogo, digite:
+	[pos_x] [pos_y]
+	Exemplo: 6 3
+	No exemplo acima, atiramos na posição (6, 3) do
+	campo inimigo.
