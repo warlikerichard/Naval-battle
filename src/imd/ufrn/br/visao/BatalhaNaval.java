@@ -51,10 +51,28 @@ public class BatalhaNaval {
 				
 				break;
 			case WIN:
+				File ship = new File("src/imd/ufrn/br/visao/victory.txt");
+				
+				try {
+		            Scanner scanner = new Scanner(ship);
+
+		            while (scanner.hasNextLine()) {
+		                String line = scanner.nextLine();
+		                System.out.println(line);
+		            }
+		            scanner.close();
+		        } catch (FileNotFoundException e) {
+		            e.printStackTrace();
+		        }
+				System.out.println("Pressione Enter para voltar ao menu.");
+				scan.nextLine();
+				game.setState(GameState.MENU);
 				
 				break;
 			case GAME_OVER:
-				
+				System.out.println("Pressione Enter para voltar ao menu.");
+				scan.nextLine();
+				game.setState(GameState.MENU);
 				break;
 			case EXIT_GAME:
 				
