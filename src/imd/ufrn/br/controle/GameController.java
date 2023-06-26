@@ -49,33 +49,36 @@ public class GameController {
 		System.out.println();
 	}
 	
-	public void turn(int[] aimPlayer) {
+	// 0 para continuar o jogo, 1 para vitória do Player, 2 para vitória do Computador
+	public int turn(int[] aimPlayer) {
 		this.tabuleiroCPU.shot(aimPlayer);
+		if (verificarVidas(this.tabuleiroCPU))
+			return 1;
 		
-		int[] aimCPU = new int[2];
-		aimCPU[0] = this.tabuleiroCPU.getRandomNumber(0, 9);
-		aimCPU[1] = this.tabuleiroCPU.getRandomNumber(0, 9);
+		int[] aimCPU = this.tabuleiroCPU.aim(this.tabuleiroPlayer.getMapa());
 		this.tabuleiroPlayer.shot(aimCPU);
+		if (verificarVidas(this.tabuleiroPlayer))
+			return 2;
 		
 		System.out.println("Computador atirou em : " + aimCPU[0] + ", " + aimCPU[1]);
 		System.out.println();
 		
+
+		return 0;
 		//drawBoards();
+
 	}
 	
 	//Verifica se um tabuleiro ainda possui algum navio com vida restante
 	public boolean verificarVidas(Tabuleiro tabuleiro) {
-		boolean lost = true;
 		HashMap<Integer, Navio> navios = tabuleiro.getNavios();
 		
 		for(Map.Entry<Integer, Navio> navio : navios.entrySet()) {
-			if (navio.getValue().getVida_restante() > 0) {
-				lost = false;
-				break;
-			}
+			if (navio.getValue().getVida_restante() > 0)
+				return false;
 		}
 		
-		return lost;
+		return true;
 	}
 	
 	/*public static void main(String ards[]) {
